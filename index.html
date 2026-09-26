@@ -1,0 +1,1639 @@
+
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>ЛапаКорм — оптовый магазин кормов для животных</title>
+  <meta name="description" content="Оптовые поставки кормов для собак, кошек, грызунов и птиц. Более 50 видов кормов, работа с юрлицами и ИП, доставка по всей России.">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🐾</text></svg>">
+  <style>
+:root {
+  --orange: #f26522;
+  --orange-dark: #d85414;
+  --orange-light: #fff0e8;
+  --teal: #1e9e8f;
+  --teal-dark: #15766b;
+  --ink: #2b2b2b;
+  --muted: #6b6b6b;
+  --bg: #f7f6f3;
+  --card: #ffffff;
+  --line: #ece9e2;
+  --radius: 16px;
+  --shadow: 0 10px 30px rgba(43, 43, 43, .08);
+  --shadow-sm: 0 4px 14px rgba(43, 43, 43, .06);
+}
+
+* { box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  color: var(--ink);
+  background: var(--bg);
+  line-height: 1.55;
+}
+
+a { color: var(--orange); text-decoration: none; }
+a:hover { color: var(--orange-dark); }
+h1, h2, h3, h4 { line-height: 1.2; margin: 0 0 .5em; }
+p { margin: 0 0 1em; }
+ul { margin: 0; padding: 0; list-style: none; }
+
+.container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
+
+/* Buttons */
+.btn {
+  display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+  border: 2px solid transparent; border-radius: 999px; cursor: pointer;
+  font-weight: 600; font-size: 15px; padding: 11px 22px; transition: all .15s;
+  text-align: center; white-space: nowrap;
+}
+.btn-primary { background: var(--orange); color: #fff; }
+.btn-primary:hover { background: var(--orange-dark); color: #fff; transform: translateY(-1px); }
+.btn-ghost { background: transparent; border-color: var(--orange); color: var(--orange); }
+.btn-ghost:hover { background: var(--orange-light); }
+.hero .btn-ghost { background: #fff; color: var(--orange); border-color: #fff; }
+.hero .btn-ghost:hover { background: #ffe8db; border-color: #ffe8db; color: var(--orange); }
+.btn-light { background: #fff; color: var(--orange); }
+.btn-light:hover { background: #ffe8db; }
+.btn-lg { font-size: 17px; padding: 14px 30px; }
+.btn-sm { font-size: 14px; padding: 8px 16px; }
+
+/* Header */
+.site-header {
+  background: #fff; border-bottom: 1px solid var(--line);
+  position: sticky; top: 0; z-index: 50;
+}
+.header-inner { display: flex; align-items: center; gap: 24px; height: 76px; }
+.logo { display: flex; align-items: center; gap: 12px; color: var(--ink); }
+.logo:hover { color: var(--ink); }
+.logo-icon { font-size: 30px; }
+.logo-text { display: flex; flex-direction: column; line-height: 1.15; }
+.logo-name { font-weight: 800; font-size: 19px; letter-spacing: -.2px; }
+.logo-sub { font-size: 12px; color: var(--muted); }
+.nav { display: flex; gap: 22px; margin-left: auto; }
+.nav a { color: var(--ink); font-weight: 500; }
+.nav a:hover { color: var(--orange); }
+.header-phone { display: flex; flex-direction: column; align-items: flex-end; line-height: 1.2; }
+.phone { font-weight: 700; color: var(--ink); }
+.phone:hover { color: var(--orange); }
+.phone-note { font-size: 12px; color: var(--muted); }
+.header-cta { margin-left: 4px; }
+
+/* Hero */
+.hero {
+  background: linear-gradient(135deg, #ff7a3c 0%, #f26522 55%, #e8530f 100%);
+  color: #fff; padding: 70px 0 60px; overflow: hidden; position: relative;
+}
+.hero::after {
+  content: ""; position: absolute; right: -140px; top: -140px;
+  width: 480px; height: 480px; border-radius: 50%;
+  background: rgba(255,255,255,.08);
+}
+.hero-inner { display: flex; align-items: center; gap: 40px; position: relative; z-index: 1; }
+.hero-text { flex: 1 1 55%; }
+.hero-badge {
+  display: inline-block; background: rgba(255,255,255,.2); border: 1px solid rgba(255,255,255,.35);
+  padding: 5px 14px; border-radius: 999px; font-size: 13px; font-weight: 600; margin-bottom: 18px;
+}
+.hero h1 { font-size: 44px; font-weight: 800; letter-spacing: -.5px; margin-bottom: 16px; }
+.hero p { font-size: 18px; opacity: .95; max-width: 560px; margin-bottom: 26px; }
+.hero-actions { display: flex; gap: 14px; flex-wrap: wrap; }
+.hero-stats { display: flex; gap: 40px; margin-top: 36px; }
+.stat strong { display: block; font-size: 30px; font-weight: 800; }
+.stat span { font-size: 14px; opacity: .9; }
+
+.hero-art { flex: 1 1 40%; position: relative; min-height: 300px; }
+.hero-card {
+  position: absolute; background: #fff; color: var(--ink); border-radius: 18px;
+  box-shadow: var(--shadow); padding: 18px 20px; display: flex; align-items: center; gap: 12px;
+  font-weight: 600; animation: float 5s ease-in-out infinite;
+}
+.hero-card span { font-size: 15px; }
+.hero-card .em { width: 48px; height: 48px; border-radius: 50%; object-fit: cover; display: block; flex: 0 0 auto; }
+.card-a { top: 10px; left: 4%; }
+.card-b { top: 110px; right: 0; animation-delay: .8s; }
+.card-c { bottom: 0; left: 12%; animation-delay: 1.6s; }
+.card-d { bottom: 60px; right: 8%; animation-delay: 2.4s; }
+@keyframes float { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-10px); } }
+
+/* Section heads */
+.section-head { text-align: center; max-width: 640px; margin: 0 auto 30px; }
+.section-head h2 { font-size: 34px; font-weight: 800; }
+.section-head p { color: var(--muted); }
+
+/* Catalog */
+.catalog { padding: 64px 0; }
+.cat-chips { display: flex; flex-wrap: wrap; gap: 10px; justify-content: center; margin-bottom: 40px; }
+.chip {
+  background: #fff; border: 1px solid var(--line); border-radius: 999px;
+  padding: 9px 18px; font-weight: 600; color: var(--ink); transition: all .15s;
+}
+.chip:hover { border-color: var(--orange); color: var(--orange); }
+
+.category { margin-bottom: 48px; }
+.category-title { font-size: 24px; font-weight: 800; margin-bottom: 18px; display: flex; align-items: center; gap: 10px; }
+
+.product-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 20px; }
+.product-card {
+  background: var(--card); border-radius: var(--radius); overflow: hidden;
+  box-shadow: var(--shadow-sm); border: 1px solid var(--line);
+  display: flex; flex-direction: column; transition: all .18s;
+}
+.product-card:hover { box-shadow: var(--shadow); transform: translateY(-3px); }
+.product-art {
+  height: 120px; display: flex; align-items: center; justify-content: center; font-size: 64px;
+  background: linear-gradient(135deg, #fff3ec, #ffe2d1);
+}
+.product-body { padding: 18px; display: flex; flex-direction: column; flex: 1; }
+.product-tags { display: flex; gap: 6px; margin-bottom: 10px; min-height: 22px; }
+.tag { font-size: 11px; font-weight: 700; padding: 3px 10px; border-radius: 999px; text-transform: uppercase; }
+.tag-new { background: #e8f8f5; color: var(--teal); }
+.tag-hit { background: #fff0e8; color: var(--orange); }
+.product-name { font-size: 16px; font-weight: 700; margin-bottom: 6px; }
+.product-desc { font-size: 13.5px; color: var(--muted); margin-bottom: 12px; flex: 1; }
+.product-meta { display: flex; flex-direction: column; gap: 3px; margin-bottom: 14px; }
+.meta { font-size: 13px; color: var(--muted); }
+.product-price-row { display: flex; align-items: center; justify-content: space-between; gap: 10px; }
+.price { font-size: 20px; font-weight: 800; color: var(--ink); }
+
+/* How */
+.how { background: #fff; padding: 64px 0; border-top: 1px solid var(--line); }
+.how-steps { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+.step { text-align: center; padding: 24px; }
+.step-num {
+  width: 48px; height: 48px; border-radius: 50%; background: var(--orange); color: #fff;
+  display: flex; align-items: center; justify-content: center; font-size: 22px; font-weight: 800;
+  margin: 0 auto 14px;
+}
+.step h4 { margin-bottom: 6px; }
+.step p { color: var(--muted); margin: 0; }
+
+/* Vacancy banner */
+.vacancy-banner { padding: 40px 0; }
+.vacancy-banner-inner {
+  background: linear-gradient(135deg, #1e9e8f, #15766b); color: #fff;
+  border-radius: 20px; padding: 40px 48px; display: flex; align-items: center; gap: 30px;
+}
+.vacancy-banner-text { flex: 1; }
+.vacancy-banner-text .hero-badge { background: rgba(255,255,255,.18); }
+.vacancy-banner-text h2 { font-size: 28px; margin-bottom: 10px; }
+.vacancy-banner-text p { opacity: .92; margin: 0; }
+
+/* Page hero */
+.page-hero { background: linear-gradient(135deg, #ff7a3c, #f26522); color: #fff; padding: 56px 0; }
+.page-hero h1 { font-size: 38px; font-weight: 800; }
+.page-hero p { font-size: 17px; opacity: .95; max-width: 640px; margin: 0; }
+
+/* Order form */
+.order { padding: 56px 0; }
+.order-grid { display: grid; grid-template-columns: 1fr 320px; gap: 32px; align-items: start; }
+.order-form { background: #fff; border-radius: var(--radius); padding: 32px; box-shadow: var(--shadow-sm); border: 1px solid var(--line); }
+.order-form h2 { font-size: 20px; margin: 26px 0 14px; }
+.order-form h2:first-child { margin-top: 0; }
+.form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+.order-form label { display: block; font-weight: 600; font-size: 14px; margin-bottom: 4px; }
+.order-form input, .order-form textarea {
+  width: 100%; margin-top: 6px; padding: 12px 14px; border: 1px solid #dcd7cd; border-radius: 10px;
+  font-size: 15px; font-family: inherit; background: #fbfaf7; transition: border .15s;
+}
+.order-form input:focus, .order-form textarea:focus { outline: none; border-color: var(--orange); background: #fff; }
+.req { color: var(--orange); }
+
+.selected-hint { background: var(--orange-light); border-radius: 10px; padding: 12px 16px; margin-bottom: 14px; font-size: 14px; }
+
+.product-picker { max-height: 420px; overflow: auto; border: 1px solid var(--line); border-radius: 12px; padding: 8px; margin-bottom: 4px; }
+.picker-group { padding: 4px 0; }
+.picker-cat { font-weight: 700; font-size: 14px; padding: 8px 10px 4px; color: var(--orange); }
+.picker-item {
+  display: flex; align-items: center; gap: 12px; padding: 8px 10px; border-radius: 8px;
+  cursor: pointer; transition: background .12s;
+}
+.picker-item:hover { background: #faf7f2; }
+.picker-item.is-selected { background: var(--orange-light); }
+.picker-item input { width: auto; margin: 0; accent-color: var(--orange); }
+.picker-name { flex: 1; font-weight: 500; font-size: 14px; }
+.picker-weight { font-size: 13px; color: var(--muted); }
+.picker-price { font-weight: 700; font-size: 14px; min-width: 70px; text-align: right; }
+
+.form-comment { margin-bottom: 22px; }
+.form-note { font-size: 12px; color: var(--muted); margin: 12px 0 0; }
+
+/* Aside */
+.order-aside { background: #fff; border-radius: var(--radius); padding: 26px; box-shadow: var(--shadow-sm); border: 1px solid var(--line); }
+.order-aside h3 { font-size: 17px; margin-bottom: 12px; }
+.aside-list li { padding: 7px 0; border-bottom: 1px solid var(--line); font-size: 14.5px; }
+.aside-list li:last-child { border-bottom: none; }
+.aside-contacts { margin-top: 20px; padding-top: 20px; border-top: 1px solid var(--line); }
+.aside-contacts p { margin: 0 0 8px; }
+
+/* Vacancy page */
+.vacancy { padding: 56px 0; }
+.vacancy-grid { display: grid; grid-template-columns: 1fr 320px; gap: 32px; align-items: start; }
+.vacancy-main { background: #fff; border-radius: var(--radius); padding: 36px; box-shadow: var(--shadow-sm); border: 1px solid var(--line); }
+.vacancy-main h2 { font-size: 28px; margin-bottom: 12px; }
+.vacancy-main h3 { font-size: 18px; margin: 24px 0 10px; color: var(--orange); }
+.vacancy-main ul { list-style: disc; padding-left: 20px; margin-bottom: 8px; }
+.vacancy-main li { margin-bottom: 6px; }
+.vacancy-lead { font-size: 16px; color: var(--muted); }
+.vacancy-cta { margin-top: 26px; padding-top: 24px; border-top: 1px solid var(--line); }
+
+/* Thanks */
+.thanks { padding: 80px 0; text-align: center; }
+.thanks-inner { max-width: 620px; }
+.thanks-icon { font-size: 72px; margin-bottom: 16px; }
+.thanks h1 { font-size: 34px; }
+.thanks .hero-actions { justify-content: center; margin-top: 26px; }
+
+/* Footer */
+.site-footer { background: #2b2b2b; color: #cfcfcf; padding-top: 56px; margin-top: 0; }
+.footer-grid { display: grid; grid-template-columns: 1.6fr 1fr 1fr 1.2fr; gap: 32px; padding-bottom: 40px; }
+.footer-col h4 { color: #fff; font-size: 15px; margin-bottom: 16px; }
+.footer-col ul li { margin-bottom: 9px; }
+.footer-col a { color: #cfcfcf; }
+.footer-col a:hover { color: #fff; }
+.logo--light { margin-bottom: 14px; }
+.logo--light .logo-name { color: #fff; }
+.logo--light .logo-sub { color: #9a9a9a; }
+.footer-about p { font-size: 14px; color: #a8a8a8; }
+.footer-contacts li { font-size: 14px; }
+.footer-bottom { border-top: 1px solid #3c3c3c; padding: 18px 0; font-size: 13px; color: #8a8a8a; }
+
+/* Form feedback */
+.success-box { background: #e8f8f5; color: var(--teal-dark); border: 1px solid #bfe8df; border-radius: 10px; padding: 14px 16px; margin-bottom: 18px; font-weight: 600; }
+.error-box { background: #fff0f0; color: #c0392b; border: 1px solid #f3c2c2; border-radius: 10px; padding: 14px 16px; margin-bottom: 18px; font-weight: 600; }
+.file-upload { display: block; margin-bottom: 20px; }
+.file-upload input[type=file] { width: 100%; padding: 12px; border: 2px dashed #dcd7cd; border-radius: 10px; background: #fbfaf7; cursor: pointer; font-size: 14px; }
+.file-upload input[type=file]:hover { border-color: var(--orange); }
+.file-hint { font-size: 13px; color: var(--muted); font-weight: 400; margin-top: 6px; display: block; }
+
+/* Responsive */
+@media (max-width: 960px) {
+  .nav { display: none; }
+  .header-phone { display: none; }
+  .hero-inner { flex-direction: column; }
+  .hero-art { width: 100%; min-height: auto; display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; margin-top: 16px; }
+  .hero-card { position: static; animation: none; padding: 14px 16px; gap: 10px; }
+  .hero-card span { font-size: 14px; line-height: 1.25; }
+  .hero-card .em { width: 42px; height: 42px; }
+  .card-a, .card-b, .card-c, .card-d { top: auto; left: auto; right: auto; bottom: auto; }
+  .order-grid, .vacancy-grid { grid-template-columns: 1fr; }
+  .footer-grid { grid-template-columns: 1fr 1fr; }
+}
+@media (max-width: 600px) {
+  .hero h1 { font-size: 32px; }
+  .form-row { grid-template-columns: 1fr; }
+  .how-steps { grid-template-columns: 1fr; }
+  .footer-grid { grid-template-columns: 1fr; }
+  .vacancy-banner-inner { flex-direction: column; text-align: center; }
+}
+
+</style>
+</head>
+<body>
+  <header class="site-header">
+    <div class="container header-inner">
+      <a class="logo" href="index.html">
+        <span class="logo-icon">🐾</span>
+        <span class="logo-text">
+          <span class="logo-name">ЛапаКорм</span>
+          <span class="logo-sub">оптовый магазин кормов</span>
+        </span>
+      </a>
+      <nav class="nav">
+        <a href="index.html#catalog">Каталог</a>
+        <a href="order.html">Оставить заявку</a>
+        <a href="vacancy.html">Вакансии</a>
+        <a href="index.html#contacts">Контакты</a>
+      </nav>
+      <a class="btn btn-primary header-cta" href="order.html">Заявка</a>
+    </div>
+  </header>
+
+  <main>
+    
+<section class="hero">
+  <div class="container hero-inner">
+    <div class="hero-text">
+      <span class="hero-badge">Опт и крупный опт</span>
+      <h1>Корма для животных<br>оптом по всей России</h1>
+      <p>Более 50 видов кормов для собак, кошек, грызунов и птиц. Прямые поставки, выгодные цены, работа с юрлицами, ИП и частными покупателями.</p>
+      <div class="hero-actions">
+        <a class="btn btn-primary btn-lg" href="index.html#catalog">Смотреть каталог</a>
+        <a class="btn btn-ghost btn-lg" href="order.html">Оставить заявку</a>
+      </div>
+      <div class="hero-stats">
+        <div class="stat"><strong>50</strong><span>видов кормов</span></div>
+        <div class="stat"><strong>6</strong><span>категорий</span></div>
+        <div class="stat"><strong>24 ч</strong><span>ответ менеджера</span></div>
+      </div>
+    </div>
+    <div class="hero-art" aria-hidden="true">
+      <div class="hero-card card-a"><img class="em" src="img/hero-dog.jpg" alt=""><span>Корма для собак</span></div>
+      <div class="hero-card card-b"><img class="em" src="img/hero-cat.jpg" alt=""><span>Корма для кошек</span></div>
+      <div class="hero-card card-c"><img class="em" src="img/hero-bird.jpg" alt=""><span>Корма для птиц</span></div>
+      <div class="hero-card card-d"><img class="em" src="img/hero-rabbit.jpg" alt=""><span>Грызунам и кроликам</span></div>
+    </div>
+  </div>
+</section>
+
+<section class="catalog" id="catalog">
+  <div class="container">
+    <div class="section-head">
+      <h2>Каталог кормов</h2>
+      <p>Выберите категорию или оставьте заявку — менеджер свяжется и подберёт ассортимент под ваши задачи.</p>
+    </div>
+
+    <div class="cat-chips">
+      
+        <a class="chip" href="#cat-dogs-dry">🐶 Сухие корма для собак</a>
+      
+        <a class="chip" href="#cat-cats-dry">🐱 Сухие корма для кошек</a>
+      
+        <a class="chip" href="#cat-wet">🥫 Влажные корма</a>
+      
+        <a class="chip" href="#cat-rodents">🐹 Корма для грызунов</a>
+      
+        <a class="chip" href="#cat-birds">🦜 Корма для птиц</a>
+      
+        <a class="chip" href="#cat-treats">🦴 Лакомства</a>
+      
+    </div>
+
+    
+      <div class="category" id="cat-dogs-dry">
+        <h3 class="category-title">🐶 Сухие корма для собак</h3>
+        <div class="product-grid">
+          
+            
+              <article class="product-card">
+                <div class="product-art"><img src="img/product-01.jpg" alt="Беззерновой корм с ягнёнком и картофелем" style="width:100%;height:100%;object-fit:cover;display:block;" loading="lazy"></div>
+                <div class="product-body">
+                  <div class="product-tags">
+                    <span class="tag tag-new">Новинка</span>
+                    
+                  </div>
+                  <h4 class="product-name">Беззерновой корм с ягнёнком и картофелем</h4>
+                  <p class="product-desc">Гипоаллергенный монопротеиновый корм для собак с пищевой непереносимостью и чувствительным пищеварением. Не содержит пшеницы, кукурузы и сои.</p>
+                  <div class="product-meta">
+                    <span class="meta">📦 12 кг</span>
+                    <span class="meta">🏭 г. Москва</span>
+                    <span class="meta">✅ от 1 упаковки</span>
+                  </div>
+                  <div class="product-price-row">
+                    <span class="price">3850 ₽</span>
+                    <a class="btn btn-primary btn-sm" href="order.html?product=28">Заказать</a>
+                  </div>
+                </div>
+              </article>
+            
+          
+            
+              <article class="product-card">
+                <div class="product-art"><img src="img/product-02.jpg" alt="Корм для собак средних пород с индейкой и овощами" style="width:100%;height:100%;object-fit:cover;display:block;" loading="lazy"></div>
+                <div class="product-body">
+                  <div class="product-tags">
+                    
+                    
+                  </div>
+                  <h4 class="product-name">Корм для собак средних пород с индейкой и овощами</h4>
+                  <p class="product-desc">Сбалансированный рацион для собак средних пород. Индейка и овощи обеспечивают лёгкое пищеварение, а средний размер гранул удобен для ежедневного кормления.</p>
+                  <div class="product-meta">
+                    <span class="meta">📦 14 кг</span>
+                    <span class="meta">🏭 г. Нижний Новгород</span>
+                    <span class="meta">✅ от 1 упаковки</span>
+                  </div>
+                  <div class="product-price-row">
+                    <span class="price">3090 ₽</span>
+                    <a class="btn btn-primary btn-sm" href="order.html?product=30">Заказать</a>
+                  </div>
+                </div>
+              </article>
+            
+          
+            
+              <article class="product-card">
+                <div class="product-art"><img src="img/product-03.jpg" alt="Корм для спортивных собак с высоким содержанием белка" style="width:100%;height:100%;object-fit:cover;display:block;" loading="lazy"></div>
+                <div class="product-body">
+                  <div class="product-tags">
+                    
+                    
+                  </div>
+                  <h4 class="product-name">Корм для спортивных собак с высоким содержанием белка</h4>
+                  <p class="product-desc">Высокобелковая формула (35% протеина) для спортивных и тренируемых собак. Способствует набору мышечной массы и быстрому восстановлению после нагрузок.</p>
+                  <div class="product-meta">
+                    <span class="meta">📦 16 кг</span>
+                    <span class="meta">🏭 г. Екатеринбург</span>
+                    <span class="meta">✅ от 1 упаковки</span>
+                  </div>
+                  <div class="product-price-row">
+                    <span class="price">3980 ₽</span>
+                    <a class="btn btn-primary btn-sm" href="order.html?product=29">Заказать</a>
+                  </div>
+                </div>
+              </article>
+            
+          
+            
+              <article class="product-card">
+                <div class="product-art"><img src="img/product-04.jpg" alt="Корм для щенков крупных пород с лососем и рисом" style="width:100%;height:100%;object-fit:cover;display:block;" loading="lazy"></div>
+                <div class="product-body">
+                  <div class="product-tags">
+                    <span class="tag tag-new">Новинка</span>
+                    
+                  </div>
+                  <h4 class="product-name">Корм для щенков крупных пород с лососем и рисом</h4>
+                  <p class="product-desc">Корм для щенков крупных пород в период активного роста. Лосось и рыбий жир поддерживают развитие мозга и зрения, а сбалансированный кальций — крепкие кости.</p>
+                  <div class="product-meta">
+                    <span class="meta">📦 12 кг</span>
+                    <span class="meta">🏭 г. Самара</span>
+                    <span class="meta">✅ от 1 упаковки</span>
+                  </div>
+                  <div class="product-price-row">
+                    <span class="price">3590 ₽</span>
+                    <a class="btn btn-primary btn-sm" href="order.html?product=31">Заказать</a>
+                  </div>
+                </div>
+              </article>
+            
+          
+            
+              <article class="product-card">
+                <div class="product-art"><img src="img/product-05.jpg" alt="Сухой корм для активных собак с уткой и рисом" style="width:100%;height:100%;object-fit:cover;display:block;" loading="lazy"></div>
+                <div class="product-body">
+                  <div class="product-tags">
+                    <span class="tag tag-new">Новинка</span>
+                    
+                  </div>
+                  <h4 class="product-name">Сухой корм для активных собак с уткой и рисом</h4>
+                  <p class="product-desc">Энергоёмкий корм для рабочих, охотничьих и очень активных собак. Утка — легкоусвояемый источник белка, рис даёт энергию, а L-карнитин поддерживает выносливость.</p>
+                  <div class="product-meta">
+                    <span class="meta">📦 15 кг</span>
+                    <span class="meta">🏭 г. Ростов-на-Дону</span>
+                    <span class="meta">✅ от 1 упаковки</span>
+                  </div>
+                  <div class="product-price-row">
+                    <span class="price">3350 ₽</span>
+                    <a class="btn btn-primary btn-sm" href="order.html?product=27">Заказать</a>
+                  </div>
+                </div>
+              </article>
+            
+          
+            
+              <article class="product-card">
+                <div class="product-art"><img src="img/product-06.jpg" alt="Сухой корм для взрослых собак с курицей" style="width:100%;height:100%;object-fit:cover;display:block;" loading="lazy"></div>
+                <div class="product-body">
+                  <div class="product-tags">
+                    
+                    <span class="tag tag-hit">Хит</span>
+                  </div>
+                  <h4 class="product-name">Сухой корм для взрослых собак с курицей</h4>
+                  <p class="product-desc">Полнорационный корм с высоким содержанием мяса курицы для взрослых собак всех пород. Сбалансирован по белку, жирам и клетчатке, поддерживает активность и здоровье питомца. Произведён в России из отборного сырья без ГМО.</p>
+                  <div class="product-meta">
+                    <span class="meta">📦 15 кг</span>
+                    <span class="meta">🏭 г. Тверь</span>
+                    <span class="meta">✅ от 1 упаковки</span>
+                  </div>
+                  <div class="product-price-row">
+                    <span class="price">2890 ₽</span>
+                    <a class="btn btn-primary btn-sm" href="order.html?product=1">Заказать</a>
+                  </div>
+                </div>
+              </article>
+            
+          
+            
+              <article class="product-card">
+                <div class="product-art"><img src="img/product-07.jpg" alt="Сухой корм для крупных пород с говядиной" style="width:100%;height:100%;object-fit:cover;display:block;" loading="lazy"></div>
+                <div class="product-body">
+                  <div class="product-tags">
+                    
+                    
+                  </div>
+                  <h4 class="product-name">Сухой корм для крупных пород с говядиной</h4>
+                  <p class="product-desc">Корм для собак крупных пород с глюкозамином и хондроитином для здоровья суставов. Крупные гранулы способствуют правильному захвату пищи и очищению зубов.</p>
+                  <div class="product-meta">
+                    <span class="meta">📦 18 кг</span>
+                    <span class="meta">🏭 г. Воронеж</span>
+                    <span class="meta">✅ от 1 упаковки</span>
+                  </div>
+                  <div class="product-price-row">
+                    <span class="price">3490 ₽</span>
+                    <a class="btn btn-primary btn-sm" href="order.html?product=3">Заказать</a>
+                  </div>
+                </div>
+              </article>
+            
+          
+            
+              <article class="product-card">
+                <div class="product-art"><img src="img/product-08.jpg" alt="Сухой корм для мелких пород с лососем" style="width:100%;height:100%;object-fit:cover;display:block;" loading="lazy"></div>
+                <div class="product-body">
+                  <div class="product-tags">
+                    
+                    
+                  </div>
+                  <h4 class="product-name">Сухой корм для мелких пород с лососем</h4>
+                  <p class="product-desc">Мелкие гранулы для собак небольших пород. Лосось поддерживает здоровье кожи и блеск шерсти, а сбалансированный состав покрывает энергетические потребности активных миниатюрных питомцев.</p>
+                  <div class="product-meta">
+                    <span class="meta">📦 3 кг</span>
+                    <span class="meta">🏭 г. Санкт-Петербург</span>
+                    <span class="meta">✅ от 1 упаковки</span>
+                  </div>
+                  <div class="product-price-row">
+                    <span class="price">1290 ₽</span>
+                    <a class="btn btn-primary btn-sm" href="order.html?product=4">Заказать</a>
+                  </div>
+                </div>
+              </article>
+            
+          
+            
+              <article class="product-card">
+                <div class="product-art"><img src="img/product-09.jpg" alt="Сухой корм для пожилых собак (сенситив)" style="width:100%;height:100%;object-fit:cover;display:block;" loading="lazy"></div>
+                <div class="product-body">
+                  <div class="product-tags">
+                    
+                    
+                  </div>
+                  <h4 class="product-name">Сухой корм для пожилых собак (сенситив)</h4>
+                  <p class="product-desc">Сниженная калорийность и легкоусвояемые ингредиенты для собак старше 7 лет. Поддерживает здоровье сердца, суставов и почек, помогает контролировать вес.</p>
+                  <div class="product-meta">
+                    <span class="meta">📦 12 кг</span>
+                    <span class="meta">🏭 г. Казань</span>
+                    <span class="meta">✅ от 1 упаковки</span>
+                  </div>
+                  <div class="product-price-row">
+                    <span class="price">2750 ₽</span>
+                    <a class="btn btn-primary btn-sm" href="order.html?product=5">Заказать</a>
+                  </div>
+                </div>
+              </article>
+            
+          
+            
+              <article class="product-card">
+                <div class="product-art"><img src="img/product-10.jpg" alt="Сухой корм для щенков с ягнёнком и рисом" style="width:100%;height:100%;object-fit:cover;display:block;" loading="lazy"></div>
+                <div class="product-body">
+                  <div class="product-tags">
+                    <span class="tag tag-new">Новинка</span>
+                    
+                  </div>
+                  <h4 class="product-name">Сухой корм для щенков с ягнёнком и рисом</h4>
+                  <p class="product-desc">Специальная формула для роста и развития щенков. Легкоусвояемый ягнёнок и рис бережно относятся к чувствительному пищеварению, укрепляют иммунитет и костную систему.</p>
+                  <div class="product-meta">
+                    <span class="meta">📦 10 кг</span>
+                    <span class="meta">🏭 г. Новосибирск</span>
+                    <span class="meta">✅ от 1 упаковки</span>
+                  </div>
+                  <div class="product-price-row">
+                    <span class="price">3190 ₽</span>
+                    <a class="btn btn-primary btn-sm" href="order.html?product=2">Заказать</a>
+                  </div>
+                </div>
+              </article>
+            
+          
+        </div>
+      </div>
+    
+      <div class="category" id="cat-cats-dry">
+        <h3 class="category-title">🐱 Сухие корма для кошек</h3>
+        <div class="product-grid">
+          
+            
+              <article class="product-card">
+                <div class="product-art"><img src="img/product-11.jpg" alt="Беззерновой корм с кроликом и тыквой" style="width:100%;height:100%;object-fit:cover;display:block;" loading="lazy"></div>
+                <div class="product-body">
+                  <div class="product-tags">
+                    <span class="tag tag-new">Новинка</span>
+                    
+                  </div>
+                  <h4 class="product-name">Беззерновой корм с кроликом и тыквой</h4>
+                  <p class="product-desc">Гипоаллергенный беззерновой корм с нежным кроликом для кошек с пищевой непереносимостью. Тыква нормализует пищеварение, таурин поддерживает сердце.</p>
+                  <div class="product-meta">
+                    <span class="meta">📦 2.5 кг</span>
+                    <span class="meta">🏭 г. Москва</span>
+                    <span class="meta">✅ от 1 упаковки</span>
+                  </div>
+                  <div class="product-price-row">
+                    <span class="price">1390 ₽</span>
+                    <a class="btn btn-primary btn-sm" href="order.html?product=33">Заказать</a>
+                  </div>
+                </div>
+              </article>
+            
+          
+            
+              <article class="product-card">
+                <div class="product-art"><img src="img/product-12.jpg" alt="Корм для активных кошек с высоким содержанием протеина" style="width:100%;height:100%;object-fit:cover;display:block;" loading="lazy"></div>
+                <div class="product-body">
+                  <div class="product-tags">
+                    <span class="tag tag-new">Новинка</span>
+                    
+                  </div>
+                  <h4 class="product-name">Корм для активных кошек с высоким содержанием протеина</h4>
+                  <p class="product-desc">Высокобелковый корм для энергичных и молодых кошек. 38% белка поддерживают мышечный тонус и активность, а таурин — здоровье сердца и зрения.</p>
+                  <div class="product-meta">
+                    <span class="meta">📦 10 кг</span>
+                    <span class="meta">🏭 г. Тверь</span>
+                    <span class="meta">✅ от 1 упаковки</span>
+                  </div>
+                  <div class="product-price-row">
+                    <span class="price">3350 ₽</span>
+                    <a class="btn btn-primary btn-sm" href="order.html?product=36">Заказать</a>
+                  </div>
+                </div>
+              </article>
+            
+          
+            
+              <article class="product-card">
+                <div class="product-art"><img src="img/product-13.jpg" alt="Корм для длинношёрстных кошек (против комков шерсти)" style="width:100%;height:100%;object-fit:cover;display:block;" loading="lazy"></div>
+                <div class="product-body">
+                  <div class="product-tags">
+                    
+                    
+                  </div>
+                  <h4 class="product-name">Корм для длинношёрстных кошек (против комков шерсти)</h4>
+                  <p class="product-desc">Специальная формула с клетчаткой и лецитином, помогающая выводить проглоченную шерсть. Поддерживает блеск длинной шерсти и здоровье кожи.</p>
+                  <div class="product-meta">
+                    <span class="meta">📦 8 кг</span>
+                    <span class="meta">🏭 г. Санкт-Петербург</span>
+                    <span class="meta">✅ от 1 упаковки</span>
+                  </div>
+                  <div class="product-price-row">
+                    <span class="price">3090 ₽</span>
+                    <a class="btn btn-primary btn-sm" href="order.html?product=32">Заказать</a>
+                  </div>
+                </div>
+              </article>
+            
+          
+            
+              <article class="product-card">
+                <div class="product-art"><img src="img/product-14.jpg" alt="Корм для кошек с белой шерстью (уход за шерстью)" style="width:100%;height:100%;object-fit:cover;display:block;" loading="lazy"></div>
+                <div class="product-body">
+                  <div class="product-tags">
+                    
+                    
+                  </div>
+                  <h4 class="product-name">Корм для кошек с белой шерстью (уход за шерстью)</h4>
+                  <p class="product-desc">Формула с биотином, цинком и Омега-кислотами для сохранения белоснежности и густоты шерсти. Поддерживает здоровье кожи и уменьшает выпадение волос.</p>
+                  <div class="product-meta">
+                    <span class="meta">📦 8 кг</span>
+                    <span class="meta">🏭 г. Казань</span>
+                    <span class="meta">✅ от 1 упаковки</span>
+                  </div>
+                  <div class="product-price-row">
+                    <span class="price">3150 ₽</span>
+                    <a class="btn btn-primary btn-sm" href="order.html?product=35">Заказать</a>
+                  </div>
+                </div>
+              </article>
+            
+          
+            
+              <article class="product-card">
+                <div class="product-art"><img src="img/product-15.jpg" alt="Корм для пожилых кошек 7+" style="width:100%;height:100%;object-fit:cover;display:block;" loading="lazy"></div>
+                <div class="product-body">
+                  <div class="product-tags">
+                    
+                    
+                  </div>
+                  <h4 class="product-name">Корм для пожилых кошек 7+</h4>
+                  <p class="product-desc">Рацион для кошек старше 7 лет: умеренная калорийность, повышенное содержание антиоксидантов и Омега-3 для поддержки сердца, почек и суставов.</p>
+                  <div class="product-meta">
+                    <span class="meta">📦 8 кг</span>
+                    <span class="meta">🏭 г. Воронеж</span>
+                    <span class="meta">✅ от 1 упаковки</span>
+                  </div>
+                  <div class="product-price-row">
+                    <span class="price">2890 ₽</span>
+                    <a class="btn btn-primary btn-sm" href="order.html?product=34">Заказать</a>
+                  </div>
+                </div>
+              </article>
+            
+          
+            
+              <article class="product-card">
+                <div class="product-art"><img src="img/product-16.jpg" alt="Сухой корм для взрослых кошек с курицей" style="width:100%;height:100%;object-fit:cover;display:block;" loading="lazy"></div>
+                <div class="product-body">
+                  <div class="product-tags">
+                    
+                    <span class="tag tag-hit">Хит</span>
+                  </div>
+                  <h4 class="product-name">Сухой корм для взрослых кошек с курицей</h4>
+                  <p class="product-desc">Сбалансированный корм для взрослых кошек. Поддерживает здоровье мочевыделительной системы и оптимальный вес. Высокое содержание курицы обеспечивает отличный вкус.</p>
+                  <div class="product-meta">
+                    <span class="meta">📦 10 кг</span>
+                    <span class="meta">🏭 г. Тверь</span>
+                    <span class="meta">✅ от 1 упаковки</span>
+                  </div>
+                  <div class="product-price-row">
+                    <span class="price">2990 ₽</span>
+                    <a class="btn btn-primary btn-sm" href="order.html?product=6">Заказать</a>
+                  </div>
+                </div>
+              </article>
+            
+          
+            
+              <article class="product-card">
+                <div class="product-art"><img src="img/product-17.jpg" alt="Сухой корм для котят с лососем" style="width:100%;height:100%;object-fit:cover;display:block;" loading="lazy"></div>
+                <div class="product-body">
+                  <div class="product-tags">
+                    <span class="tag tag-new">Новинка</span>
+                    
+                  </div>
+                  <h4 class="product-name">Сухой корм для котят с лососем</h4>
+                  <p class="product-desc">Корм для котят до 12 месяцев: лосось и молозиво укрепляют иммунитет, а DHA способствует развитию мозга и зрения. Мелкие гранулы удобны для маленькой пасти.</p>
+                  <div class="product-meta">
+                    <span class="meta">📦 2 кг</span>
+                    <span class="meta">🏭 г. Санкт-Петербург</span>
+                    <span class="meta">✅ от 1 упаковки</span>
+                  </div>
+                  <div class="product-price-row">
+                    <span class="price">890 ₽</span>
+                    <a class="btn btn-primary btn-sm" href="order.html?product=7">Заказать</a>
+                  </div>
+                </div>
+              </article>
+            
+          
+            
+              <article class="product-card">
+                <div class="product-art"><img src="img/product-18.jpg" alt="Сухой корм для кошек с индейкой и клюквой" style="width:100%;height:100%;object-fit:cover;display:block;" loading="lazy"></div>
+                <div class="product-body">
+                  <div class="product-tags">
+                    
+                    
+                  </div>
+                  <h4 class="product-name">Сухой корм для кошек с индейкой и клюквой</h4>
+                  <p class="product-desc">Корм для поддержания здоровья мочевыводящих путей. Индейка — диетический белок, клюква способствует профилактике цистита и мочекаменной болезни.</p>
+                  <div class="product-meta">
+                    <span class="meta">📦 10 кг</span>
+                    <span class="meta">🏭 г. Казань</span>
+                    <span class="meta">✅ от 1 упаковки</span>
+                  </div>
+                  <div class="product-price-row">
+                    <span class="price">3250 ₽</span>
+                    <a class="btn btn-primary btn-sm" href="order.html?product=10">Заказать</a>
+                  </div>
+                </div>
+              </article>
+            
+          
+            
+              <article class="product-card">
+                <div class="product-art"><img src="img/product-19.jpg" alt="Сухой корм для кошек с чувствительным пищеварением" style="width:100%;height:100%;object-fit:cover;display:block;" loading="lazy"></div>
+                <div class="product-body">
+                  <div class="product-tags">
+                    
+                    
+                  </div>
+                  <h4 class="product-name">Сухой корм для кошек с чувствительным пищеварением</h4>
+                  <p class="product-desc">Монопротеин и пребиотики для кошек с чувствительным желудком и склонностью к аллергии. Легкоусвояемая формула без пшеницы и сои.</p>
+                  <div class="product-meta">
+                    <span class="meta">📦 8 кг</span>
+                    <span class="meta">🏭 г. Москва</span>
+                    <span class="meta">✅ от 1 упаковки</span>
+                  </div>
+                  <div class="product-price-row">
+                    <span class="price">2890 ₽</span>
+                    <a class="btn btn-primary btn-sm" href="order.html?product=9">Заказать</a>
+                  </div>
+                </div>
+              </article>
+            
+          
+            
+              <article class="product-card">
+                <div class="product-art"><img src="img/product-20.jpg" alt="Сухой корм для стерилизованных кошек" style="width:100%;height:100%;object-fit:cover;display:block;" loading="lazy"></div>
+                <div class="product-body">
+                  <div class="product-tags">
+                    
+                    
+                  </div>
+                  <h4 class="product-name">Сухой корм для стерилизованных кошек</h4>
+                  <p class="product-desc">Контроль веса и профилактика мочекаменной болезни для стерилизованных кошек. Сниженная калорийность и клюква поддерживают здоровье мочевыводящих путей.</p>
+                  <div class="product-meta">
+                    <span class="meta">📦 10 кг</span>
+                    <span class="meta">🏭 г. Воронеж</span>
+                    <span class="meta">✅ от 1 упаковки</span>
+                  </div>
+                  <div class="product-price-row">
+                    <span class="price">3150 ₽</span>
+                    <a class="btn btn-primary btn-sm" href="order.html?product=8">Заказать</a>
+                  </div>
+                </div>
+              </article>
+            
+          
+        </div>
+      </div>
+    
+      <div class="category" id="cat-wet">
+        <h3 class="category-title">🥫 Влажные корма</h3>
+        <div class="product-grid">
+          
+            
+              <article class="product-card">
+                <div class="product-art"><img src="img/product-21.jpg" alt="Консервы с говядиной для собак (24 банки)" style="width:100%;height:100%;object-fit:cover;display:block;" loading="lazy"></div>
+                <div class="product-body">
+                  <div class="product-tags">
+                    
+                    <span class="tag tag-hit">Хит</span>
+                  </div>
+                  <h4 class="product-name">Консервы с говядиной для собак (24 банки)</h4>
+                  <p class="product-desc">Полнорационный влажный корм с крупными кусочками говядины. Подходит для собак всех пород, удобен как основной рацион или добавка к сухому корму.</p>
+                  <div class="product-meta">
+                    <span class="meta">📦 24 × 340 г</span>
+                    <span class="meta">🏭 г. Воронеж</span>
+                    <span class="meta">✅ от 1 коробки</span>
+                  </div>
+                  <div class="product-price-row">
+                    <span class="price">1890 ₽</span>
+                    <a class="btn btn-primary btn-sm" href="order.html?product=12">Заказать</a>
+                  </div>
+                </div>
+              </article>
+            
+          
+            
+              <article class="product-card">
+                <div class="product-art"><img src="img/product-22.jpg" alt="Консервы с индейкой для кошек (24 банки)" style="width:100%;height:100%;object-fit:cover;display:block;" loading="lazy"></div>
+                <div class="product-body">
+                  <div class="product-tags">
+                    
+                    
+                  </div>
+                  <h4 class="product-name">Консервы с индейкой для кошек (24 банки)</h4>
+                  <p class="product-desc">Диетическая индейка для кошек с чувствительным пищеварением. Не содержит злаков, подходит для стерилизованных и склонных к аллергии кошек.</p>
+                  <div class="product-meta">
+                    <span class="meta">📦 24 × 100 г</span>
+                    <span class="meta">🏭 г. Омск</span>
+                    <span class="meta">✅ от 1 коробки</span>
+                  </div>
+                  <div class="product-price-row">
+                    <span class="price">1750 ₽</span>
+                    <a class="btn btn-primary btn-sm" href="order.html?product=14">Заказать</a>
+                  </div>
+                </div>
+              </article>
+            
+          
+            
+              <article class="product-card">
+                <div class="product-art"><img src="img/product-23.jpg" alt="Консервы с ягнёнком для собак (24 банки)" style="width:100%;height:100%;object-fit:cover;display:block;" loading="lazy"></div>
+                <div class="product-body">
+                  <div class="product-tags">
+                    
+                    
+                  </div>
+                  <h4 class="product-name">Консервы с ягнёнком для собак (24 банки)</h4>
+                  <p class="product-desc">Монопротеиновые консервы с ягнёнком для собак с чувствительным пищеварением. Без курицы и злаков, подходят при аллергии.</p>
+                  <div class="product-meta">
+                    <span class="meta">📦 24 × 340 г</span>
+                    <span class="meta">🏭 г. Омск</span>
+                    <span class="meta">✅ от 1 коробки</span>
+                  </div>
+                  <div class="product-price-row">
+                    <span class="price">1980 ₽</span>
+                    <a class="btn btn-primary btn-sm" href="order.html?product=38">Заказать</a>
+                  </div>
+                </div>
+              </article>
+            
+          
+            
+              <article class="product-card">
+                <div class="product-art"><img src="img/product-24.jpg" alt="Мясные кусочки в соусе для собак (24 банки)" style="width:100%;height:100%;object-fit:cover;display:block;" loading="lazy"></div>
+                <div class="product-body">
+                  <div class="product-tags">
+                    
+                    
+                  </div>
+                  <h4 class="product-name">Мясные кусочки в соусе для собак (24 банки)</h4>
+                  <p class="product-desc">Сочные мясные кусочки в ароматном соусе. Подходит как полноценный влажный рацион или аппетитная добавка к сухому корму для собак.</p>
+                  <div class="product-meta">
+                    <span class="meta">📦 24 × 400 г</span>
+                    <span class="meta">🏭 г. Саратов</span>
+                    <span class="meta">✅ от 1 коробки</span>
+                  </div>
+                  <div class="product-price-row">
+                    <span class="price">2050 ₽</span>
+                    <a class="btn btn-primary btn-sm" href="order.html?product=40">Заказать</a>
+                  </div>
+                </div>
+              </article>
+            
+          
+            
+              <article class="product-card">
+                <div class="product-art"><img src="img/product-25.jpg" alt="Паучи с курицей для кошек (24 шт.)" style="width:100%;height:100%;object-fit:cover;display:block;" loading="lazy"></div>
+                <div class="product-body">
+                  <div class="product-tags">
+                    
+                    
+                  </div>
+                  <h4 class="product-name">Паучи с курицей для кошек (24 шт.)</h4>
+                  <p class="product-desc">Влажный корм в мягкой упаковке. Нежные кусочки курицы в соусе нравятся даже привередливым кошкам и содержат много влаги, полезной для почек.</p>
+                  <div class="product-meta">
+                    <span class="meta">📦 24 × 85 г</span>
+                    <span class="meta">🏭 г. Тверь</span>
+                    <span class="meta">✅ от 1 коробки</span>
+                  </div>
+                  <div class="product-price-row">
+                    <span class="price">1450 ₽</span>
+                    <a class="btn btn-primary btn-sm" href="order.html?product=11">Заказать</a>
+                  </div>
+                </div>
+              </article>
+            
+          
+            
+              <article class="product-card">
+                <div class="product-art"><img src="img/product-26.jpg" alt="Паучи с курицей и овощами для кошек (24 шт.)" style="width:100%;height:100%;object-fit:cover;display:block;" loading="lazy"></div>
+                <div class="product-body">
+                  <div class="product-tags">
+                    
+                    
+                  </div>
+                  <h4 class="product-name">Паучи с курицей и овощами для кошек (24 шт.)</h4>
+                  <p class="product-desc">Полноценное блюдо с кусочками курицы, морковью и кабачком. Сбалансированный состав для ежедневного кормления взрослых кошек.</p>
+                  <div class="product-meta">
+                    <span class="meta">📦 24 × 85 г</span>
+                    <span class="meta">🏭 г. Барнаул</span>
+                    <span class="meta">✅ от 1 коробки</span>
+                  </div>
+                  <div class="product-price-row">
+                    <span class="price">1520 ₽</span>
+                    <a class="btn btn-primary btn-sm" href="order.html?product=39">Заказать</a>
+                  </div>
+                </div>
+              </article>
+            
+          
+            
+              <article class="product-card">
+                <div class="product-art"><img src="img/product-27.jpg" alt="Паучи с лососем для кошек (24 шт.)" style="width:100%;height:100%;object-fit:cover;display:block;" loading="lazy"></div>
+                <div class="product-body">
+                  <div class="product-tags">
+                    <span class="tag tag-new">Новинка</span>
+                    
+                  </div>
+                  <h4 class="product-name">Паучи с лососем для кошек (24 шт.)</h4>
+                  <p class="product-desc">Влажный корм с лососем — источник Омега-3 для блеска шерсти и здоровья кожи. Нежный соус нравится кошкам всех возрастов.</p>
+                  <div class="product-meta">
+                    <span class="meta">📦 24 × 85 г</span>
+                    <span class="meta">🏭 г. Калининград</span>
+                    <span class="meta">✅ от 1 коробки</span>
+                  </div>
+                  <div class="product-price-row">
+                    <span class="price">1690 ₽</span>
+                    <a class="btn btn-primary btn-sm" href="order.html?product=37">Заказать</a>
+                  </div>
+                </div>
+              </article>
+            
+          
+            
+              <article class="product-card">
+                <div class="product-art"><img src="img/product-28.jpg" alt="Паучи с тунцом для котят (24 шт.)" style="width:100%;height:100%;object-fit:cover;display:block;" loading="lazy"></div>
+                <div class="product-body">
+                  <div class="product-tags">
+                    
+                    
+                  </div>
+                  <h4 class="product-name">Паучи с тунцом для котят (24 шт.)</h4>
+                  <p class="product-desc">Нежный тунец для котят — легкоусвояемый белок для роста. Мелкая текстура идеальна для приучения к влажному корму.</p>
+                  <div class="product-meta">
+                    <span class="meta">📦 24 × 85 г</span>
+                    <span class="meta">🏭 г. Калининград</span>
+                    <span class="meta">✅ от 1 коробки</span>
+                  </div>
+                  <div class="product-price-row">
+                    <span class="price">1580 ₽</span>
+                    <a class="btn btn-primary btn-sm" href="order.html?product=13">Заказать</a>
+                  </div>
+                </div>
+              </article>
+            
+          
+        </div>
+      </div>
+    
+      <div class="category" id="cat-rodents">
+        <h3 class="category-title">🐹 Корма для грызунов</h3>
+        <div class="product-grid">
+          
+            
+              <article class="product-card">
+                <div class="product-art"><img src="img/product-29.jpg" alt="Корм для дегу" style="width:100%;height:100%;object-fit:cover;display:block;" loading="lazy"></div>
+                <div class="product-body">
+                  <div class="product-tags">
+                    <span class="tag tag-new">Новинка</span>
+                    
+                  </div>
+                  <h4 class="product-name">Корм для дегу</h4>
+                  <p class="product-desc">Беззерновой корм для дегу с низким содержанием сахара. Учитывает особенности обмена веществ дегу и предотвращает развитие диабета.</p>
+                  <div class="product-meta">
+                    <span class="meta">📦 2 кг</span>
+                    <span class="meta">🏭 г. Красноярск</span>
+                    <span class="meta">✅ от 1 упаковки</span>
+                  </div>
+                  <div class="product-price-row">
+                    <span class="price">580 ₽</span>
+                    <a class="btn btn-primary btn-sm" href="order.html?product=42">Заказать</a>
+                  </div>
+                </div>
+              </article>
+            
+          
+            
+              <article class="product-card">
+                <div class="product-art"><img src="img/product-30.jpg" alt="Корм для декоративных крыс" style="width:100%;height:100%;object-fit:cover;display:block;" loading="lazy"></div>
+                <div class="product-body">
+                  <div class="product-tags">
+                    
+                    
+                  </div>
+                  <h4 class="product-name">Корм для декоративных крыс</h4>
+                  <p class="product-desc">Полноценный зерновой корм с белковыми добавками для крыс. Сбалансирован по белку и жирам, подходит для ежедневного кормления.</p>
+                  <div class="product-meta">
+                    <span class="meta">📦 2 кг</span>
+                    <span class="meta">🏭 г. Уфа</span>
+                    <span class="meta">✅ от 1 упаковки</span>
+                  </div>
+                  <div class="product-price-row">
+                    <span class="price">540 ₽</span>
+                    <a class="btn btn-primary btn-sm" href="order.html?product=18">Заказать</a>
+                  </div>
+                </div>
+              </article>
+            
+          
+            
+              <article class="product-card">
+                <div class="product-art"><img src="img/product-31.jpg" alt="Корм для кроликов" style="width:100%;height:100%;object-fit:cover;display:block;" loading="lazy"></div>
+                <div class="product-body">
+                  <div class="product-tags">
+                    
+                    
+                  </div>
+                  <h4 class="product-name">Корм для кроликов</h4>
+                  <p class="product-desc">Гранулированный корм с сеном для здоровья зубов и пищеварения кроликов. Высокое содержание клетчатки способствует нормальному пищеварению.</p>
+                  <div class="product-meta">
+                    <span class="meta">📦 5 кг</span>
+                    <span class="meta">🏭 г. Воронеж</span>
+                    <span class="meta">✅ от 1 упаковки</span>
+                  </div>
+                  <div class="product-price-row">
+                    <span class="price">690 ₽</span>
+                    <a class="btn btn-primary btn-sm" href="order.html?product=17">Заказать</a>
+                  </div>
+                </div>
+              </article>
+            
+          
+            
+              <article class="product-card">
+                <div class="product-art"><img src="img/product-32.jpg" alt="Корм для морских свинок" style="width:100%;height:100%;object-fit:cover;display:block;" loading="lazy"></div>
+                <div class="product-body">
+                  <div class="product-tags">
+                    
+                    
+                  </div>
+                  <h4 class="product-name">Корм для морских свинок</h4>
+                  <p class="product-desc">Сбалансированная смесь с витамином C для морских свинок. Витамин C критически важен, так как морские свинки не вырабатывают его самостоятельно.</p>
+                  <div class="product-meta">
+                    <span class="meta">📦 2 кг</span>
+                    <span class="meta">🏭 г. Пермь</span>
+                    <span class="meta">✅ от 1 упаковки</span>
+                  </div>
+                  <div class="product-price-row">
+                    <span class="price">520 ₽</span>
+                    <a class="btn btn-primary btn-sm" href="order.html?product=16">Заказать</a>
+                  </div>
+                </div>
+              </article>
+            
+          
+            
+              <article class="product-card">
+                <div class="product-art"><img src="img/product-33.jpg" alt="Корм для хомяков и мышей" style="width:100%;height:100%;object-fit:cover;display:block;" loading="lazy"></div>
+                <div class="product-body">
+                  <div class="product-tags">
+                    
+                    
+                  </div>
+                  <h4 class="product-name">Корм для хомяков и мышей</h4>
+                  <p class="product-desc">Зерновая смесь с овощами и семечками для мелких грызунов. Сбалансированный состав поддерживает активность и здоровье зубов.</p>
+                  <div class="product-meta">
+                    <span class="meta">📦 2 кг</span>
+                    <span class="meta">🏭 г. Пермь</span>
+                    <span class="meta">✅ от 1 упаковки</span>
+                  </div>
+                  <div class="product-price-row">
+                    <span class="price">450 ₽</span>
+                    <a class="btn btn-primary btn-sm" href="order.html?product=15">Заказать</a>
+                  </div>
+                </div>
+              </article>
+            
+          
+            
+              <article class="product-card">
+                <div class="product-art"><img src="img/product-34.jpg" alt="Корм для хорьков (высокобелковый)" style="width:100%;height:100%;object-fit:cover;display:block;" loading="lazy"></div>
+                <div class="product-body">
+                  <div class="product-tags">
+                    <span class="tag tag-new">Новинка</span>
+                    
+                  </div>
+                  <h4 class="product-name">Корм для хорьков (высокобелковый)</h4>
+                  <p class="product-desc">Высокобелковый корм для хорьков с животными ингредиентами. Хорьки — облигатные хищники, поэтому рацион содержит минимум растительных компонентов.</p>
+                  <div class="product-meta">
+                    <span class="meta">📦 2 кг</span>
+                    <span class="meta">🏭 г. Уфа</span>
+                    <span class="meta">✅ от 1 упаковки</span>
+                  </div>
+                  <div class="product-price-row">
+                    <span class="price">890 ₽</span>
+                    <a class="btn btn-primary btn-sm" href="order.html?product=43">Заказать</a>
+                  </div>
+                </div>
+              </article>
+            
+          
+            
+              <article class="product-card">
+                <div class="product-art"><img src="img/product-35.jpg" alt="Корм для шиншилл" style="width:100%;height:100%;object-fit:cover;display:block;" loading="lazy"></div>
+                <div class="product-body">
+                  <div class="product-tags">
+                    <span class="tag tag-new">Новинка</span>
+                    
+                  </div>
+                  <h4 class="product-name">Корм для шиншилл</h4>
+                  <p class="product-desc">Специализированный корм для шиншилл с высоким содержанием клетчатки и гранулами из люцерны. Поддерживает чувствительное пищеварение и здоровье зубов.</p>
+                  <div class="product-meta">
+                    <span class="meta">📦 2 кг</span>
+                    <span class="meta">🏭 г. Пермь</span>
+                    <span class="meta">✅ от 1 упаковки</span>
+                  </div>
+                  <div class="product-price-row">
+                    <span class="price">620 ₽</span>
+                    <a class="btn btn-primary btn-sm" href="order.html?product=41">Заказать</a>
+                  </div>
+                </div>
+              </article>
+            
+          
+        </div>
+      </div>
+    
+      <div class="category" id="cat-birds">
+        <h3 class="category-title">🦜 Корма для птиц</h3>
+        <div class="product-grid">
+          
+            
+              <article class="product-card">
+                <div class="product-art"><img src="img/product-36.jpg" alt="Корм для волнистых попугаев" style="width:100%;height:100%;object-fit:cover;display:block;" loading="lazy"></div>
+                <div class="product-body">
+                  <div class="product-tags">
+                    
+                    
+                  </div>
+                  <h4 class="product-name">Корм для волнистых попугаев</h4>
+                  <p class="product-desc">Зерновая смесь для волнистых попугаев с витаминами и минералами. Обеспечивает энергией и поддерживает яркое оперение.</p>
+                  <div class="product-meta">
+                    <span class="meta">📦 2 кг</span>
+                    <span class="meta">🏭 г. Владимир</span>
+                    <span class="meta">✅ от 1 упаковки</span>
+                  </div>
+                  <div class="product-price-row">
+                    <span class="price">480 ₽</span>
+                    <a class="btn btn-primary btn-sm" href="order.html?product=19">Заказать</a>
+                  </div>
+                </div>
+              </article>
+            
+          
+            
+              <article class="product-card">
+                <div class="product-art"><img src="img/product-37.jpg" alt="Корм для диких и уличных птиц (универсальный)" style="width:100%;height:100%;object-fit:cover;display:block;" loading="lazy"></div>
+                <div class="product-body">
+                  <div class="product-tags">
+                    
+                    
+                  </div>
+                  <h4 class="product-name">Корм для диких и уличных птиц (универсальный)</h4>
+                  <p class="product-desc">Универсальная смесь для подкормки синиц, воробьёв, снегирей и других уличных птиц. Подходит для кормушек в любое время года.</p>
+                  <div class="product-meta">
+                    <span class="meta">📦 5 кг</span>
+                    <span class="meta">🏭 г. Ижевск</span>
+                    <span class="meta">✅ от 1 упаковки</span>
+                  </div>
+                  <div class="product-price-row">
+                    <span class="price">550 ₽</span>
+                    <a class="btn btn-primary btn-sm" href="order.html?product=46">Заказать</a>
+                  </div>
+                </div>
+              </article>
+            
+          
+            
+              <article class="product-card">
+                <div class="product-art"><img src="img/product-38.jpg" alt="Корм для канареек" style="width:100%;height:100%;object-fit:cover;display:block;" loading="lazy"></div>
+                <div class="product-body">
+                  <div class="product-tags">
+                    
+                    
+                  </div>
+                  <h4 class="product-name">Корм для канареек</h4>
+                  <p class="product-desc">Специальная смесь для канареек с высоким содержанием проса. Подходит для ежедневного кормления певчих и декоративных канареек.</p>
+                  <div class="product-meta">
+                    <span class="meta">📦 2 кг</span>
+                    <span class="meta">🏭 г. Владимир</span>
+                    <span class="meta">✅ от 1 упаковки</span>
+                  </div>
+                  <div class="product-price-row">
+                    <span class="price">450 ₽</span>
+                    <a class="btn btn-primary btn-sm" href="order.html?product=20">Заказать</a>
+                  </div>
+                </div>
+              </article>
+            
+          
+            
+              <article class="product-card">
+                <div class="product-art"><img src="img/product-39.jpg" alt="Корм для крупных попугаев (жако, амазоны)" style="width:100%;height:100%;object-fit:cover;display:block;" loading="lazy"></div>
+                <div class="product-body">
+                  <div class="product-tags">
+                    <span class="tag tag-new">Новинка</span>
+                    
+                  </div>
+                  <h4 class="product-name">Корм для крупных попугаев (жако, амазоны)</h4>
+                  <p class="product-desc">Смесь для крупных попугаев с орехами, бобовыми и сухофруктами. Обеспечивает разнообразное и питательное кормление умных птиц.</p>
+                  <div class="product-meta">
+                    <span class="meta">📦 5 кг</span>
+                    <span class="meta">🏭 г. Москва</span>
+                    <span class="meta">✅ от 1 упаковки</span>
+                  </div>
+                  <div class="product-price-row">
+                    <span class="price">980 ₽</span>
+                    <a class="btn btn-primary btn-sm" href="order.html?product=44">Заказать</a>
+                  </div>
+                </div>
+              </article>
+            
+          
+            
+              <article class="product-card">
+                <div class="product-art"><img src="img/product-40.jpg" alt="Корм для средних попугаев" style="width:100%;height:100%;object-fit:cover;display:block;" loading="lazy"></div>
+                <div class="product-body">
+                  <div class="product-tags">
+                    
+                    
+                  </div>
+                  <h4 class="product-name">Корм для средних попугаев</h4>
+                  <p class="product-desc">Смесь для корелл, неразлучников и средних попугаев с орехами и сухофруктами. Разнообразный состав стимулирует естественное пищевое поведение.</p>
+                  <div class="product-meta">
+                    <span class="meta">📦 3 кг</span>
+                    <span class="meta">🏭 г. Москва</span>
+                    <span class="meta">✅ от 1 упаковки</span>
+                  </div>
+                  <div class="product-price-row">
+                    <span class="price">690 ₽</span>
+                    <a class="btn btn-primary btn-sm" href="order.html?product=21">Заказать</a>
+                  </div>
+                </div>
+              </article>
+            
+          
+            
+              <article class="product-card">
+                <div class="product-art"><img src="img/product-41.jpg" alt="Корм для щеглов и лесных певчих птиц" style="width:100%;height:100%;object-fit:cover;display:block;" loading="lazy"></div>
+                <div class="product-body">
+                  <div class="product-tags">
+                    
+                    
+                  </div>
+                  <h4 class="product-name">Корм для щеглов и лесных певчих птиц</h4>
+                  <p class="product-desc">Мелкая зерновая смесь для щеглов, чижей и других лесных певчих птиц. Высокое содержание масличных семян поддерживает энергию.</p>
+                  <div class="product-meta">
+                    <span class="meta">📦 2 кг</span>
+                    <span class="meta">🏭 г. Владимир</span>
+                    <span class="meta">✅ от 1 упаковки</span>
+                  </div>
+                  <div class="product-price-row">
+                    <span class="price">520 ₽</span>
+                    <a class="btn btn-primary btn-sm" href="order.html?product=45">Заказать</a>
+                  </div>
+                </div>
+              </article>
+            
+          
+        </div>
+      </div>
+    
+      <div class="category" id="cat-treats">
+        <h3 class="category-title">🦴 Лакомства</h3>
+        <div class="product-grid">
+          
+            
+              <article class="product-card">
+                <div class="product-art"><img src="img/product-42.jpg" alt="Вяленые лакомства из говядины для собак" style="width:100%;height:100%;object-fit:cover;display:block;" loading="lazy"></div>
+                <div class="product-body">
+                  <div class="product-tags">
+                    <span class="tag tag-new">Новинка</span>
+                    
+                  </div>
+                  <h4 class="product-name">Вяленые лакомства из говядины для собак</h4>
+                  <p class="product-desc">100% натуральная вяленая говядина без добавок. Идеально для дрессировки и как полезное поощрение, не содержит консервантов.</p>
+                  <div class="product-meta">
+                    <span class="meta">📦 400 г</span>
+                    <span class="meta">🏭 г. Воронеж</span>
+                    <span class="meta">✅ от 1 упаковки</span>
+                  </div>
+                  <div class="product-price-row">
+                    <span class="price">890 ₽</span>
+                    <a class="btn btn-primary btn-sm" href="order.html?product=47">Заказать</a>
+                  </div>
+                </div>
+              </article>
+            
+          
+            
+              <article class="product-card">
+                <div class="product-art"><img src="img/product-43.jpg" alt="Злаковые палочки для грызунов" style="width:100%;height:100%;object-fit:cover;display:block;" loading="lazy"></div>
+                <div class="product-body">
+                  <div class="product-tags">
+                    
+                    
+                  </div>
+                  <h4 class="product-name">Злаковые палочки для грызунов</h4>
+                  <p class="product-desc">Хрустящие палочки с зерном и мёдом для стачивания зубов грызунов. Отличное развлечение и источник энергии.</p>
+                  <div class="product-meta">
+                    <span class="meta">📦 350 г</span>
+                    <span class="meta">🏭 г. Пермь</span>
+                    <span class="meta">✅ от 1 упаковки</span>
+                  </div>
+                  <div class="product-price-row">
+                    <span class="price">320 ₽</span>
+                    <a class="btn btn-primary btn-sm" href="order.html?product=25">Заказать</a>
+                  </div>
+                </div>
+              </article>
+            
+          
+            
+              <article class="product-card">
+                <div class="product-art"><img src="img/product-44.jpg" alt="Лакомства для дрессировки (мелкие кусочки)" style="width:100%;height:100%;object-fit:cover;display:block;" loading="lazy"></div>
+                <div class="product-body">
+                  <div class="product-tags">
+                    
+                    
+                  </div>
+                  <h4 class="product-name">Лакомства для дрессировки (мелкие кусочки)</h4>
+                  <p class="product-desc">Мелкие мягкие кусочки для поощрения во время дрессировки. Удобный размер, выраженный мясной вкус, не оставляет крошек.</p>
+                  <div class="product-meta">
+                    <span class="meta">📦 500 г</span>
+                    <span class="meta">🏭 г. Тюмень</span>
+                    <span class="meta">✅ от 1 упаковки</span>
+                  </div>
+                  <div class="product-price-row">
+                    <span class="price">680 ₽</span>
+                    <a class="btn btn-primary btn-sm" href="order.html?product=49">Заказать</a>
+                  </div>
+                </div>
+              </article>
+            
+          
+            
+              <article class="product-card">
+                <div class="product-art"><img src="img/product-45.jpg" alt="Медовые палочки для птиц" style="width:100%;height:100%;object-fit:cover;display:block;" loading="lazy"></div>
+                <div class="product-body">
+                  <div class="product-tags">
+                    
+                    
+                  </div>
+                  <h4 class="product-name">Медовые палочки для птиц</h4>
+                  <p class="product-desc">Лакомство на палочке с мёдом и зёрнами для птиц. Удобно крепится в клетку и надолго занимает птицу.</p>
+                  <div class="product-meta">
+                    <span class="meta">📦 300 г</span>
+                    <span class="meta">🏭 г. Владимир</span>
+                    <span class="meta">✅ от 1 упаковки</span>
+                  </div>
+                  <div class="product-price-row">
+                    <span class="price">380 ₽</span>
+                    <a class="btn btn-primary btn-sm" href="order.html?product=26">Заказать</a>
+                  </div>
+                </div>
+              </article>
+            
+          
+            
+              <article class="product-card">
+                <div class="product-art"><img src="img/product-46.jpg" alt="Мясные палочки для собак" style="width:100%;height:100%;object-fit:cover;display:block;" loading="lazy"></div>
+                <div class="product-body">
+                  <div class="product-tags">
+                    
+                    
+                  </div>
+                  <h4 class="product-name">Мясные палочки для собак</h4>
+                  <p class="product-desc">Лакомство из натурального мяса говядины. Отлично подходит для дрессировки и поощрения, содержит высокий процент мясных ингредиентов.</p>
+                  <div class="product-meta">
+                    <span class="meta">📦 500 г</span>
+                    <span class="meta">🏭 г. Воронеж</span>
+                    <span class="meta">✅ от 1 упаковки</span>
+                  </div>
+                  <div class="product-price-row">
+                    <span class="price">620 ₽</span>
+                    <a class="btn btn-primary btn-sm" href="order.html?product=22">Заказать</a>
+                  </div>
+                </div>
+              </article>
+            
+          
+            
+              <article class="product-card">
+                <div class="product-art"><img src="img/product-47.jpg" alt="Печенье для собак с печенью" style="width:100%;height:100%;object-fit:cover;display:block;" loading="lazy"></div>
+                <div class="product-body">
+                  <div class="product-tags">
+                    
+                    
+                  </div>
+                  <h4 class="product-name">Печенье для собак с печенью</h4>
+                  <p class="product-desc">Хрустящее печенье с говяжьей печенью. Полезное лакомство для дрессировки, богатое железом и витаминами группы B.</p>
+                  <div class="product-meta">
+                    <span class="meta">📦 1 кг</span>
+                    <span class="meta">🏭 г. Воронеж</span>
+                    <span class="meta">✅ от 1 упаковки</span>
+                  </div>
+                  <div class="product-price-row">
+                    <span class="price">780 ₽</span>
+                    <a class="btn btn-primary btn-sm" href="order.html?product=24">Заказать</a>
+                  </div>
+                </div>
+              </article>
+            
+          
+            
+              <article class="product-card">
+                <div class="product-art"><img src="img/product-48.jpg" alt="Подушечки для кошек с курицей" style="width:100%;height:100%;object-fit:cover;display:block;" loading="lazy"></div>
+                <div class="product-body">
+                  <div class="product-tags">
+                    
+                    <span class="tag tag-hit">Хит</span>
+                  </div>
+                  <h4 class="product-name">Подушечки для кошек с курицей</h4>
+                  <p class="product-desc">Хрустящие подушечки с нежной начинкой для кошек. Любимое лакомство для ежедневного поощрения и укрепления связи с питомцем.</p>
+                  <div class="product-meta">
+                    <span class="meta">📦 300 г</span>
+                    <span class="meta">🏭 г. Тверь</span>
+                    <span class="meta">✅ от 1 упаковки</span>
+                  </div>
+                  <div class="product-price-row">
+                    <span class="price">480 ₽</span>
+                    <a class="btn btn-primary btn-sm" href="order.html?product=23">Заказать</a>
+                  </div>
+                </div>
+              </article>
+            
+          
+            
+              <article class="product-card">
+                <div class="product-art"><img src="img/product-49.jpg" alt="Сушёная куриная грудка для кошек" style="width:100%;height:100%;object-fit:cover;display:block;" loading="lazy"></div>
+                <div class="product-body">
+                  <div class="product-tags">
+                    <span class="tag tag-new">Новинка</span>
+                    
+                  </div>
+                  <h4 class="product-name">Сушёная куриная грудка для кошек</h4>
+                  <p class="product-desc">Лакомство из цельных кусочков куриной грудки. Высокое содержание белка, без злаков и искусственных добавок.</p>
+                  <div class="product-meta">
+                    <span class="meta">📦 300 г</span>
+                    <span class="meta">🏭 г. Пенза</span>
+                    <span class="meta">✅ от 1 упаковки</span>
+                  </div>
+                  <div class="product-price-row">
+                    <span class="price">720 ₽</span>
+                    <a class="btn btn-primary btn-sm" href="order.html?product=48">Заказать</a>
+                  </div>
+                </div>
+              </article>
+            
+          
+            
+              <article class="product-card">
+                <div class="product-art"><img src="img/product-50.jpg" alt="Фруктовые палочки для грызунов" style="width:100%;height:100%;object-fit:cover;display:block;" loading="lazy"></div>
+                <div class="product-body">
+                  <div class="product-tags">
+                    
+                    
+                  </div>
+                  <h4 class="product-name">Фруктовые палочки для грызунов</h4>
+                  <p class="product-desc">Палочки с сушёными фруктами и зёрнами для грызунов. Натуральное лакомство для разнообразия рациона и стачивания зубов.</p>
+                  <div class="product-meta">
+                    <span class="meta">📦 350 г</span>
+                    <span class="meta">🏭 г. Барнаул</span>
+                    <span class="meta">✅ от 1 упаковки</span>
+                  </div>
+                  <div class="product-price-row">
+                    <span class="price">340 ₽</span>
+                    <a class="btn btn-primary btn-sm" href="order.html?product=50">Заказать</a>
+                  </div>
+                </div>
+              </article>
+            
+          
+        </div>
+      </div>
+    
+  </div>
+</section>
+
+<section class="how">
+  <div class="container">
+    <div class="section-head">
+      <h2>Как оформить заказ</h2>
+    </div>
+    <div class="how-steps">
+      <div class="step"><span class="step-num">1</span><h4>Оставьте заявку</h4><p>Укажите контакты и интересующие товары через форму.</p></div>
+      <div class="step"><span class="step-num">2</span><h4>Свяжется менеджер</h4><p>Уточнит объёмы, наличие и подготовит счёт.</p></div>
+      <div class="step"><span class="step-num">3</span><h4>Доставка</h4><p>Отправим заказ транспортной компанией по всей России.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="vacancy-banner">
+  <div class="container vacancy-banner-inner">
+    <div class="vacancy-banner-text">
+      <span class="hero-badge">Вакансия</span>
+      <h2>В нашу команду требуется онлайн менеджер</h2>
+      <p>Удалённая работа, гибкий график. Обрабатывайте заявки и помогайте клиентам выбирать корма.</p>
+    </div>
+    <a class="btn btn-light btn-lg" href="vacancy.html">Подробнее</a>
+  </div>
+</section>
+
+  </main>
+
+  <footer class="site-footer" id="contacts">
+    <div class="container footer-grid">
+      <div class="footer-col footer-about">
+        <div class="logo logo--light">
+          <span class="logo-icon">🐾</span>
+          <span class="logo-text">
+            <span class="logo-name">ЛапаКорм</span>
+            <span class="logo-sub">оптовый магазин кормов</span>
+          </span>
+        </div>
+        <p>Оптовые поставки кормов для собак, кошек, грызунов и птиц. Работаем с зоомагазинами, питомниками, приютами и частными лицами.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Каталог</h4>
+        <ul>
+          
+            <li><a href="/#cat-dogs-dry">🐶 Сухие корма для собак</a></li>
+          
+            <li><a href="/#cat-cats-dry">🐱 Сухие корма для кошек</a></li>
+          
+            <li><a href="/#cat-wet">🥫 Влажные корма</a></li>
+          
+            <li><a href="/#cat-rodents">🐹 Корма для грызунов</a></li>
+          
+            <li><a href="/#cat-birds">🦜 Корма для птиц</a></li>
+          
+            <li><a href="/#cat-treats">🦴 Лакомства</a></li>
+          
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Покупателям</h4>
+        <ul>
+          <li><a href="order.html">Оставить заявку</a></li>
+          <li><a href="vacancy.html">Вакансии</a></li>
+          <li><a href="index.html#catalog">Каталог</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Контакты</h4>
+        <ul class="footer-contacts">
+          <li>✉️ <a href="mailto:info@zoocorm.shop">info@zoocorm.shop</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div class="container">© 2024 «ЛапаКорм». Все права защищены.</div>
+    </div>
+  </footer>
+
+</body>
+</html>

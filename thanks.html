@@ -1,0 +1,379 @@
+
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Заявка отправлена — ЛапаКорм</title>
+  <meta name="description" content="Оптовые поставки кормов для собак, кошек, грызунов и птиц. Более 50 видов кормов, работа с юрлицами и ИП, доставка по всей России.">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🐾</text></svg>">
+  <style>
+:root {
+  --orange: #f26522;
+  --orange-dark: #d85414;
+  --orange-light: #fff0e8;
+  --teal: #1e9e8f;
+  --teal-dark: #15766b;
+  --ink: #2b2b2b;
+  --muted: #6b6b6b;
+  --bg: #f7f6f3;
+  --card: #ffffff;
+  --line: #ece9e2;
+  --radius: 16px;
+  --shadow: 0 10px 30px rgba(43, 43, 43, .08);
+  --shadow-sm: 0 4px 14px rgba(43, 43, 43, .06);
+}
+
+* { box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  color: var(--ink);
+  background: var(--bg);
+  line-height: 1.55;
+}
+
+a { color: var(--orange); text-decoration: none; }
+a:hover { color: var(--orange-dark); }
+h1, h2, h3, h4 { line-height: 1.2; margin: 0 0 .5em; }
+p { margin: 0 0 1em; }
+ul { margin: 0; padding: 0; list-style: none; }
+
+.container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
+
+/* Buttons */
+.btn {
+  display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+  border: 2px solid transparent; border-radius: 999px; cursor: pointer;
+  font-weight: 600; font-size: 15px; padding: 11px 22px; transition: all .15s;
+  text-align: center; white-space: nowrap;
+}
+.btn-primary { background: var(--orange); color: #fff; }
+.btn-primary:hover { background: var(--orange-dark); color: #fff; transform: translateY(-1px); }
+.btn-ghost { background: transparent; border-color: var(--orange); color: var(--orange); }
+.btn-ghost:hover { background: var(--orange-light); }
+.hero .btn-ghost { background: #fff; color: var(--orange); border-color: #fff; }
+.hero .btn-ghost:hover { background: #ffe8db; border-color: #ffe8db; color: var(--orange); }
+.btn-light { background: #fff; color: var(--orange); }
+.btn-light:hover { background: #ffe8db; }
+.btn-lg { font-size: 17px; padding: 14px 30px; }
+.btn-sm { font-size: 14px; padding: 8px 16px; }
+
+/* Header */
+.site-header {
+  background: #fff; border-bottom: 1px solid var(--line);
+  position: sticky; top: 0; z-index: 50;
+}
+.header-inner { display: flex; align-items: center; gap: 24px; height: 76px; }
+.logo { display: flex; align-items: center; gap: 12px; color: var(--ink); }
+.logo:hover { color: var(--ink); }
+.logo-icon { font-size: 30px; }
+.logo-text { display: flex; flex-direction: column; line-height: 1.15; }
+.logo-name { font-weight: 800; font-size: 19px; letter-spacing: -.2px; }
+.logo-sub { font-size: 12px; color: var(--muted); }
+.nav { display: flex; gap: 22px; margin-left: auto; }
+.nav a { color: var(--ink); font-weight: 500; }
+.nav a:hover { color: var(--orange); }
+.header-phone { display: flex; flex-direction: column; align-items: flex-end; line-height: 1.2; }
+.phone { font-weight: 700; color: var(--ink); }
+.phone:hover { color: var(--orange); }
+.phone-note { font-size: 12px; color: var(--muted); }
+.header-cta { margin-left: 4px; }
+
+/* Hero */
+.hero {
+  background: linear-gradient(135deg, #ff7a3c 0%, #f26522 55%, #e8530f 100%);
+  color: #fff; padding: 70px 0 60px; overflow: hidden; position: relative;
+}
+.hero::after {
+  content: ""; position: absolute; right: -140px; top: -140px;
+  width: 480px; height: 480px; border-radius: 50%;
+  background: rgba(255,255,255,.08);
+}
+.hero-inner { display: flex; align-items: center; gap: 40px; position: relative; z-index: 1; }
+.hero-text { flex: 1 1 55%; }
+.hero-badge {
+  display: inline-block; background: rgba(255,255,255,.2); border: 1px solid rgba(255,255,255,.35);
+  padding: 5px 14px; border-radius: 999px; font-size: 13px; font-weight: 600; margin-bottom: 18px;
+}
+.hero h1 { font-size: 44px; font-weight: 800; letter-spacing: -.5px; margin-bottom: 16px; }
+.hero p { font-size: 18px; opacity: .95; max-width: 560px; margin-bottom: 26px; }
+.hero-actions { display: flex; gap: 14px; flex-wrap: wrap; }
+.hero-stats { display: flex; gap: 40px; margin-top: 36px; }
+.stat strong { display: block; font-size: 30px; font-weight: 800; }
+.stat span { font-size: 14px; opacity: .9; }
+
+.hero-art { flex: 1 1 40%; position: relative; min-height: 300px; }
+.hero-card {
+  position: absolute; background: #fff; color: var(--ink); border-radius: 18px;
+  box-shadow: var(--shadow); padding: 18px 20px; display: flex; align-items: center; gap: 12px;
+  font-weight: 600; animation: float 5s ease-in-out infinite;
+}
+.hero-card span { font-size: 15px; }
+.hero-card .em { font-size: 30px; }
+.card-a { top: 10px; left: 4%; }
+.card-b { top: 110px; right: 0; animation-delay: .8s; }
+.card-c { bottom: 0; left: 12%; animation-delay: 1.6s; }
+.card-d { bottom: 60px; right: 8%; animation-delay: 2.4s; }
+@keyframes float { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-10px); } }
+
+/* Section heads */
+.section-head { text-align: center; max-width: 640px; margin: 0 auto 30px; }
+.section-head h2 { font-size: 34px; font-weight: 800; }
+.section-head p { color: var(--muted); }
+
+/* Catalog */
+.catalog { padding: 64px 0; }
+.cat-chips { display: flex; flex-wrap: wrap; gap: 10px; justify-content: center; margin-bottom: 40px; }
+.chip {
+  background: #fff; border: 1px solid var(--line); border-radius: 999px;
+  padding: 9px 18px; font-weight: 600; color: var(--ink); transition: all .15s;
+}
+.chip:hover { border-color: var(--orange); color: var(--orange); }
+
+.category { margin-bottom: 48px; }
+.category-title { font-size: 24px; font-weight: 800; margin-bottom: 18px; display: flex; align-items: center; gap: 10px; }
+
+.product-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 20px; }
+.product-card {
+  background: var(--card); border-radius: var(--radius); overflow: hidden;
+  box-shadow: var(--shadow-sm); border: 1px solid var(--line);
+  display: flex; flex-direction: column; transition: all .18s;
+}
+.product-card:hover { box-shadow: var(--shadow); transform: translateY(-3px); }
+.product-art {
+  height: 120px; display: flex; align-items: center; justify-content: center; font-size: 64px;
+  background: linear-gradient(135deg, #fff3ec, #ffe2d1);
+}
+.product-body { padding: 18px; display: flex; flex-direction: column; flex: 1; }
+.product-tags { display: flex; gap: 6px; margin-bottom: 10px; min-height: 22px; }
+.tag { font-size: 11px; font-weight: 700; padding: 3px 10px; border-radius: 999px; text-transform: uppercase; }
+.tag-new { background: #e8f8f5; color: var(--teal); }
+.tag-hit { background: #fff0e8; color: var(--orange); }
+.product-name { font-size: 16px; font-weight: 700; margin-bottom: 6px; }
+.product-desc { font-size: 13.5px; color: var(--muted); margin-bottom: 12px; flex: 1; }
+.product-meta { display: flex; flex-direction: column; gap: 3px; margin-bottom: 14px; }
+.meta { font-size: 13px; color: var(--muted); }
+.product-price-row { display: flex; align-items: center; justify-content: space-between; gap: 10px; }
+.price { font-size: 20px; font-weight: 800; color: var(--ink); }
+
+/* How */
+.how { background: #fff; padding: 64px 0; border-top: 1px solid var(--line); }
+.how-steps { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+.step { text-align: center; padding: 24px; }
+.step-num {
+  width: 48px; height: 48px; border-radius: 50%; background: var(--orange); color: #fff;
+  display: flex; align-items: center; justify-content: center; font-size: 22px; font-weight: 800;
+  margin: 0 auto 14px;
+}
+.step h4 { margin-bottom: 6px; }
+.step p { color: var(--muted); margin: 0; }
+
+/* Vacancy banner */
+.vacancy-banner { padding: 40px 0; }
+.vacancy-banner-inner {
+  background: linear-gradient(135deg, #1e9e8f, #15766b); color: #fff;
+  border-radius: 20px; padding: 40px 48px; display: flex; align-items: center; gap: 30px;
+}
+.vacancy-banner-text { flex: 1; }
+.vacancy-banner-text .hero-badge { background: rgba(255,255,255,.18); }
+.vacancy-banner-text h2 { font-size: 28px; margin-bottom: 10px; }
+.vacancy-banner-text p { opacity: .92; margin: 0; }
+
+/* Page hero */
+.page-hero { background: linear-gradient(135deg, #ff7a3c, #f26522); color: #fff; padding: 56px 0; }
+.page-hero h1 { font-size: 38px; font-weight: 800; }
+.page-hero p { font-size: 17px; opacity: .95; max-width: 640px; margin: 0; }
+
+/* Order form */
+.order { padding: 56px 0; }
+.order-grid { display: grid; grid-template-columns: 1fr 320px; gap: 32px; align-items: start; }
+.order-form { background: #fff; border-radius: var(--radius); padding: 32px; box-shadow: var(--shadow-sm); border: 1px solid var(--line); }
+.order-form h2 { font-size: 20px; margin: 26px 0 14px; }
+.order-form h2:first-child { margin-top: 0; }
+.form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+.order-form label { display: block; font-weight: 600; font-size: 14px; margin-bottom: 4px; }
+.order-form input, .order-form textarea {
+  width: 100%; margin-top: 6px; padding: 12px 14px; border: 1px solid #dcd7cd; border-radius: 10px;
+  font-size: 15px; font-family: inherit; background: #fbfaf7; transition: border .15s;
+}
+.order-form input:focus, .order-form textarea:focus { outline: none; border-color: var(--orange); background: #fff; }
+.req { color: var(--orange); }
+
+.selected-hint { background: var(--orange-light); border-radius: 10px; padding: 12px 16px; margin-bottom: 14px; font-size: 14px; }
+
+.product-picker { max-height: 420px; overflow: auto; border: 1px solid var(--line); border-radius: 12px; padding: 8px; margin-bottom: 4px; }
+.picker-group { padding: 4px 0; }
+.picker-cat { font-weight: 700; font-size: 14px; padding: 8px 10px 4px; color: var(--orange); }
+.picker-item {
+  display: flex; align-items: center; gap: 12px; padding: 8px 10px; border-radius: 8px;
+  cursor: pointer; transition: background .12s;
+}
+.picker-item:hover { background: #faf7f2; }
+.picker-item.is-selected { background: var(--orange-light); }
+.picker-item input { width: auto; margin: 0; accent-color: var(--orange); }
+.picker-name { flex: 1; font-weight: 500; font-size: 14px; }
+.picker-weight { font-size: 13px; color: var(--muted); }
+.picker-price { font-weight: 700; font-size: 14px; min-width: 70px; text-align: right; }
+
+.form-comment { margin-bottom: 22px; }
+.form-note { font-size: 12px; color: var(--muted); margin: 12px 0 0; }
+
+/* Aside */
+.order-aside { background: #fff; border-radius: var(--radius); padding: 26px; box-shadow: var(--shadow-sm); border: 1px solid var(--line); }
+.order-aside h3 { font-size: 17px; margin-bottom: 12px; }
+.aside-list li { padding: 7px 0; border-bottom: 1px solid var(--line); font-size: 14.5px; }
+.aside-list li:last-child { border-bottom: none; }
+.aside-contacts { margin-top: 20px; padding-top: 20px; border-top: 1px solid var(--line); }
+.aside-contacts p { margin: 0 0 8px; }
+
+/* Vacancy page */
+.vacancy { padding: 56px 0; }
+.vacancy-grid { display: grid; grid-template-columns: 1fr 320px; gap: 32px; align-items: start; }
+.vacancy-main { background: #fff; border-radius: var(--radius); padding: 36px; box-shadow: var(--shadow-sm); border: 1px solid var(--line); }
+.vacancy-main h2 { font-size: 28px; margin-bottom: 12px; }
+.vacancy-main h3 { font-size: 18px; margin: 24px 0 10px; color: var(--orange); }
+.vacancy-main ul { list-style: disc; padding-left: 20px; margin-bottom: 8px; }
+.vacancy-main li { margin-bottom: 6px; }
+.vacancy-lead { font-size: 16px; color: var(--muted); }
+.vacancy-cta { margin-top: 26px; padding-top: 24px; border-top: 1px solid var(--line); }
+
+/* Thanks */
+.thanks { padding: 80px 0; text-align: center; }
+.thanks-inner { max-width: 620px; }
+.thanks-icon { font-size: 72px; margin-bottom: 16px; }
+.thanks h1 { font-size: 34px; }
+.thanks .hero-actions { justify-content: center; margin-top: 26px; }
+
+/* Footer */
+.site-footer { background: #2b2b2b; color: #cfcfcf; padding-top: 56px; margin-top: 0; }
+.footer-grid { display: grid; grid-template-columns: 1.6fr 1fr 1fr 1.2fr; gap: 32px; padding-bottom: 40px; }
+.footer-col h4 { color: #fff; font-size: 15px; margin-bottom: 16px; }
+.footer-col ul li { margin-bottom: 9px; }
+.footer-col a { color: #cfcfcf; }
+.footer-col a:hover { color: #fff; }
+.logo--light { margin-bottom: 14px; }
+.logo--light .logo-name { color: #fff; }
+.logo--light .logo-sub { color: #9a9a9a; }
+.footer-about p { font-size: 14px; color: #a8a8a8; }
+.footer-contacts li { font-size: 14px; }
+.footer-bottom { border-top: 1px solid #3c3c3c; padding: 18px 0; font-size: 13px; color: #8a8a8a; }
+
+/* Form feedback */
+.success-box { background: #e8f8f5; color: var(--teal-dark); border: 1px solid #bfe8df; border-radius: 10px; padding: 14px 16px; margin-bottom: 18px; font-weight: 600; }
+.error-box { background: #fff0f0; color: #c0392b; border: 1px solid #f3c2c2; border-radius: 10px; padding: 14px 16px; margin-bottom: 18px; font-weight: 600; }
+.file-upload { display: block; margin-bottom: 20px; }
+.file-upload input[type=file] { width: 100%; padding: 12px; border: 2px dashed #dcd7cd; border-radius: 10px; background: #fbfaf7; cursor: pointer; font-size: 14px; }
+.file-upload input[type=file]:hover { border-color: var(--orange); }
+.file-hint { font-size: 13px; color: var(--muted); font-weight: 400; margin-top: 6px; display: block; }
+
+/* Responsive */
+@media (max-width: 960px) {
+  .nav { display: none; }
+  .header-phone { display: none; }
+  .hero-inner { flex-direction: column; }
+  .hero-art { width: 100%; min-height: 260px; }
+  .order-grid, .vacancy-grid { grid-template-columns: 1fr; }
+  .footer-grid { grid-template-columns: 1fr 1fr; }
+}
+@media (max-width: 600px) {
+  .hero h1 { font-size: 32px; }
+  .form-row { grid-template-columns: 1fr; }
+  .how-steps { grid-template-columns: 1fr; }
+  .footer-grid { grid-template-columns: 1fr; }
+  .vacancy-banner-inner { flex-direction: column; text-align: center; }
+}
+
+</style>
+</head>
+<body>
+  <header class="site-header">
+    <div class="container header-inner">
+      <a class="logo" href="index.html">
+        <span class="logo-icon">🐾</span>
+        <span class="logo-text">
+          <span class="logo-name">ЛапаКорм</span>
+          <span class="logo-sub">оптовый магазин кормов</span>
+        </span>
+      </a>
+      <nav class="nav">
+        <a href="index.html#catalog">Каталог</a>
+        <a href="order.html">Оставить заявку</a>
+        <a href="vacancy.html">Вакансии</a>
+        <a href="index.html#contacts">Контакты</a>
+      </nav>
+      <a class="btn btn-primary header-cta" href="order.html">Заявка</a>
+    </div>
+  </header>
+
+  <main>
+    
+<section class="thanks">
+  <div class="container thanks-inner">
+    <div class="thanks-icon">🎉</div>
+    <h1>Спасибо! Ваша заявка отправлена</h1>
+    <p>Менеджер свяжется с вами в течение рабочего дня, уточнит детали и подготовит счёт.</p>
+    <div class="hero-actions">
+      <a class="btn btn-primary btn-lg" href="index.html">Вернуться в каталог</a>
+      <a class="btn btn-ghost btn-lg" href="order.html">Оставить ещё одну заявку</a>
+    </div>
+  </div>
+</section>
+
+  </main>
+
+  <footer class="site-footer" id="contacts">
+    <div class="container footer-grid">
+      <div class="footer-col footer-about">
+        <div class="logo logo--light">
+          <span class="logo-icon">🐾</span>
+          <span class="logo-text">
+            <span class="logo-name">ЛапаКорм</span>
+            <span class="logo-sub">оптовый магазин кормов</span>
+          </span>
+        </div>
+        <p>Оптовые поставки кормов для собак, кошек, грызунов и птиц. Работаем с зоомагазинами, питомниками, приютами и частными лицами.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Каталог</h4>
+        <ul>
+          
+            <li><a href="/#cat-dogs-dry">🐶 Сухие корма для собак</a></li>
+          
+            <li><a href="/#cat-cats-dry">🐱 Сухие корма для кошек</a></li>
+          
+            <li><a href="/#cat-wet">🥫 Влажные корма</a></li>
+          
+            <li><a href="/#cat-rodents">🐹 Корма для грызунов</a></li>
+          
+            <li><a href="/#cat-birds">🦜 Корма для птиц</a></li>
+          
+            <li><a href="/#cat-treats">🦴 Лакомства</a></li>
+          
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Покупателям</h4>
+        <ul>
+          <li><a href="order.html">Оставить заявку</a></li>
+          <li><a href="vacancy.html">Вакансии</a></li>
+          <li><a href="index.html#catalog">Каталог</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Контакты</h4>
+        <ul class="footer-contacts">
+          <li>✉️ <a href="mailto:info@zoocorm.shop">info@zoocorm.shop</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div class="container">© 2024 «ЛапаКорм». Все права защищены.</div>
+    </div>
+  </footer>
+
+</body>
+</html>
